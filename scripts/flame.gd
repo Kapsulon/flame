@@ -5,23 +5,23 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	setDirVect(_dirVect)
+    setDirVect(_dirVect)
 
 func setDirVect(vect : Vector2):
-	_dirVect = vect
-	_dirVect.normalized()
-	var angle = atan(_dirVect.x / _dirVect.y)
-	rotate(angle)
-	if (_dirVect.x < 0):
-		scale.x = -scale.x
+    _dirVect = vect
+    _dirVect.normalized()
+    var angle = atan(_dirVect.x / _dirVect.y)
+    rotate(angle)
+    if (_dirVect.x < 0):
+        scale.x = -scale.x
 
 func setSpeed(speed : float):
-	_speed = speed 
+    _speed = speed 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	position += _dirVect * _speed * delta
+    position += _dirVect * _speed * delta
 
 
 func _on_animated_sprite_2d_animation_finished():
-	queue_free()
+    queue_free()

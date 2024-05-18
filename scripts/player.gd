@@ -6,6 +6,14 @@ var cam := Camera2D.new()
 var sprite := AnimatedSprite2D.new()
 var collision := CollisionShape2D.new()
 
+var life : float = 100
+var maxLife : float = 100
+var deo : float = 100
+var maxDeo : float = 100
+var strenght : float = 1
+var fireRate : float = 1
+var fireRange : float = 1
+
 @export
 var SPEED = 400
 
