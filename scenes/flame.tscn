@@ -1,0 +1,72 @@
+[gd_scene load_steps=14 format=3 uid="uid://cclvodsbiu1b0"]
+
+[ext_resource type="Script" path="res://scenes/flame.gd" id="1_0ut4t"]
+[ext_resource type="Texture2D" uid="uid://52qiiiv0iyh4" path="res://assets/spr_flamethrower_explosion_0.png" id="2_7vglt"]
+[ext_resource type="Texture2D" uid="uid://fjylomrdfsl2" path="res://assets/spr_flamethrower_explosion_1.png" id="3_00xd5"]
+[ext_resource type="Texture2D" uid="uid://di8bw00iguhlq" path="res://assets/spr_flamethrower_explosion_2.png" id="4_rbew1"]
+[ext_resource type="Texture2D" uid="uid://4ua03wp10thk" path="res://assets/spr_flamethrower_explosion_3.png" id="5_ulojq"]
+[ext_resource type="Texture2D" uid="uid://bqlhju6luwd2a" path="res://assets/spr_flamethrower_explosion_4.png" id="6_cno1k"]
+[ext_resource type="Texture2D" uid="uid://du7sx0hv1gvtd" path="res://assets/spr_flamethrower_explosion_5.png" id="7_j1i6m"]
+[ext_resource type="Texture2D" uid="uid://ggpa6i15s3tm" path="res://assets/spr_flamethrower_explosion_6.png" id="8_768v6"]
+[ext_resource type="Texture2D" uid="uid://0glup717jbrq" path="res://assets/spr_flamethrower_explosion_7.png" id="9_ej7ff"]
+[ext_resource type="Texture2D" uid="uid://jmgktoaigfqk" path="res://assets/spr_flamethrower_explosion_8.png" id="10_tynjv"]
+[ext_resource type="Texture2D" uid="uid://blqnnwrw6g7t1" path="res://assets/spr_flamethrower_explosion_9.png" id="11_i74qg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s5k1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7vglt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_00xd5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rbew1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ulojq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cno1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j1i6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_768v6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ej7ff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tynjv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_i74qg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htfa3"]
+size = Vector2(40, 29)
+
+[node name="Flame" type="Node2D"]
+script = ExtResource("1_0ut4t")
+_dirVect = Vector2(-1, -1)
+_speed = 100.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s5k1o")
+autoplay = "default"
+frame = 9
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_htfa3")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
