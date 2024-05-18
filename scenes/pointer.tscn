@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://p6ieash7frc3"]
+
+[ext_resource type="Texture2D" uid="uid://cve4iuafjy5fk" path="res://assets/sprites/arrow.png" id="1_5nqki"]
+
+[node name="Pointer" type="Marker2D"]
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(64, 0)
+texture = ExtResource("1_5nqki")
