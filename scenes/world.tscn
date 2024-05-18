@@ -1,20 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfx5gg01pfg87"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fc8uo"]
-[ext_resource type="Texture2D" uid="uid://iptxvq60f8yj" path="res://icon.svg" id="2_2wdso"]
 [ext_resource type="SpriteFrames" uid="uid://naxmwo2uwgli" path="res://assets/animations/player.tres" id="2_asafn"]
+[ext_resource type="Texture2D" uid="uid://bde6f6x3lab8f" path="res://assets/sprites/torch.png" id="2_yca57"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suj6p"]
-size = Vector2(128, 128)
+size = Vector2(48, 64)
 
 [node name="world" type="Node"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_fc8uo")
+SPRAY_COOLDOWN = 0.1
 collision_shape = SubResource("RectangleShape2D_suj6p")
+torch = ExtResource("2_yca57")
 animation_path = ExtResource("2_asafn")
 animation = "idle"
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(232, 354)
-texture = ExtResource("2_2wdso")
