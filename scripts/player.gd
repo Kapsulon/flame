@@ -21,6 +21,14 @@ var SPEED: float = 400
 @export
 var TORCH_OFFSET: float = 32
 
+var life : float = 100
+var maxLife : float = 100
+var deo : float = 100
+var maxDeo : float = 100
+var strenght : float = 1
+var fireRate : float = 1
+var fireRange : float = 1
+
 @export
 var SPRAY_COOLDOWN: float = 0.25
 

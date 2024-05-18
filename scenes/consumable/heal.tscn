@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmm4xc81m8jn4"]
+
+[ext_resource type="Texture2D" uid="uid://crner8hxgkdgq" path="res://assets/sprites/monster.png" id="1_lawvh"]
+[ext_resource type="Script" path="res://scripts/heal.gd" id="1_mj1s8"]
+[ext_resource type="Script" path="res://scripts/dropItem.gd" id="2_30xvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oce6r"]
+size = Vector2(13, 29)
+
+[node name="Heal" type="Node2D"]
+script = ExtResource("1_mj1s8")
+
+[node name="Monster" type="Sprite2D" parent="."]
+texture = ExtResource("1_lawvh")
+script = ExtResource("2_30xvs")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_oce6r")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

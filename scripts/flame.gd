@@ -15,7 +15,7 @@ func setDirVect(vect : Vector2):
         scale.x = -scale.x
 
 func setSpeed(speed : float):
-    _speed = speed 
+    _speed = speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
