@@ -24,7 +24,7 @@ var animation_path: SpriteFrames:
 @export var animation: String:
     set(n_animation):
         animation = n_animation
-        sprite.animation = n_animation
+        sprite.play(n_animation)
 
 @export var animation_frame: int:
     set(n_animation_frame):
@@ -35,8 +35,12 @@ func _init() -> void:
     collision.shape = RectangleShape2D.new()
 
 func _ready() -> void:
+    cam.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
+    cam.position_smoothing_enabled = true
+    cam.position_smoothing_speed = 16.0
     add_child(cam)
     sprite.scale *= 4
+    sprite.play(animation)
     add_child(sprite)
     add_child(collision)
 
@@ -48,4 +52,12 @@ func _physics_process(_delta: float) -> void:
     if Engine.is_editor_hint(): return
     var dir := Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
     velocity = dir.normalized() * SPEED
+    if velocity.length() > 0.0:
+        var tmp = animation
+        animation = "running"
+        if tmp != animation:
+            animation_frame = 1
+    else:
+        animation = "idle"
+    sprite.flip_h = get_global_mouse_position().x < position.x
     move_and_slide()
