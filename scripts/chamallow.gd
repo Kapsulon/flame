@@ -8,8 +8,6 @@ var alive : bool = true
 
 var power = 10
 
-var power = 10
-
 var speed = randi_range(150, 500)
 @export var player: Player
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
