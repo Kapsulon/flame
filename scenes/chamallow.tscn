@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://mgenapmw5748"]
+[gd_scene load_steps=27 format=3 uid="uid://mgenapmw5748"]
 
 [ext_resource type="Script" path="res://scripts/chamallow.gd" id="1_4l3rc"]
 [ext_resource type="Texture2D" uid="uid://c3l8aia7ayhk" path="res://assets/sprites/chamallow.png" id="2_60ojy"]
@@ -171,6 +171,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cq5it"]
 size = Vector2(23, 27)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cuc4"]
+size = Vector2(69, 81)
+
 [node name="Chamallow" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(6, 10)
 collision_mask = 0
@@ -195,4 +198,11 @@ shape = SubResource("RectangleShape2D_cq5it")
 wait_time = 0.5
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -4.5)
+shape = SubResource("RectangleShape2D_2cuc4")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
