@@ -6,7 +6,7 @@ var anim : AnimatedSprite2D
 @export var maxLife : float
 var alive : bool = true
 
-const speed = 150
+var speed = randi_range(150, 500)
 @export var player: Player
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 

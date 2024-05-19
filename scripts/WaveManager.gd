@@ -1,3 +1,4 @@
+class_name WaveManager
 extends Node
 
 var ENEMY_SCENE := preload("res://scenes/chamallow.tscn")
@@ -11,6 +12,7 @@ var player: Player = null
 @export
 var MAX_ENEMY_COUNT: int = 30
 
+var last_current: int = 0
 var left: int = 0
 var wave: int = 0
 var time_until_new_wave: float = 0.0
@@ -24,13 +26,14 @@ func _ready() -> void:
 
 func new_wave():
     wave += 1
-    left = roundi(0.09 * (wave^2) - 0.029 * wave + 23.9)
+    left = roundi(0.5 * (wave^2) - 0.029 * wave + 23.9)
 
 func get_current() -> int:
     var tmp := 0
     for enemy in $enemies.get_children():
         if enemy is Chamallow:
             tmp += 1
+    last_current = tmp
     return tmp
 
 func _process(delta: float) -> void:
