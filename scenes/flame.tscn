@@ -54,6 +54,7 @@ animations = [{
 size = Vector2(40, 29)
 
 [node name="Flame" type="Node2D"]
+scale = Vector2(4, 4)
 script = ExtResource("1_0ut4t")
 _dirVect = Vector2(1, 1)
 _speed = 100.0
