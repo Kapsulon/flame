@@ -127,6 +127,8 @@ func spray(aim: Vector2) -> void:
 
 func _process(delta: float) -> void:
     if Engine.is_editor_hint(): return
+    if life <= 0.0:
+        get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
     torch_spray_cd = maxf(0.0, torch_spray_cd - delta)
     if not controller:
         cam.position = get_global_mouse_position() / 16
