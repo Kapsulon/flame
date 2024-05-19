@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://krkklujclvym"]
+[gd_scene load_steps=16 format=3 uid="uid://krkklujclvym"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fc8uo"]
 [ext_resource type="SpriteFrames" uid="uid://naxmwo2uwgli" path="res://assets/animations/player.tres" id="2_asafn"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/UI.gd" id="4_dg4ss"]
 [ext_resource type="Texture2D" uid="uid://q6tra06np6hs" path="res://interface/bars/life_bar/heart_UI.png" id="4_foolh"]
 [ext_resource type="Texture2D" uid="uid://d2bljfrklv0w5" path="res://assets/sprites/deo.png" id="5_pfifa"]
+[ext_resource type="PackedScene" uid="uid://ckeaetcxuehlb" path="res://scenes/sofa.tscn" id="7_xd1jo"]
+[ext_resource type="PackedScene" uid="uid://ds06kapcb07i8" path="res://scenes/table.tscn" id="8_lsb1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suj6p"]
 size = Vector2(48, 64)
@@ -30,7 +32,7 @@ bg_color = Color(0.196078, 0.45098, 0.513726, 1)
 
 [node name="world" type="Node"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
 script = ExtResource("1_fc8uo")
 SPRAY_COOLDOWN = 0.1
 collision_shape = SubResource("RectangleShape2D_suj6p")
@@ -105,3 +107,15 @@ layout_mode = 0
 offset_right = 52.0
 offset_bottom = 51.0
 texture = ExtResource("5_pfifa")
+
+[node name="Sofa" parent="." instance=ExtResource("7_xd1jo")]
+position = Vector2(605, 126)
+
+[node name="Table" parent="." instance=ExtResource("8_lsb1p")]
+position = Vector2(199, 388)
+
+[node name="Table2" parent="." instance=ExtResource("8_lsb1p")]
+position = Vector2(389, -280)
+
+[node name="Table3" parent="." instance=ExtResource("8_lsb1p")]
+position = Vector2(-132, -257)

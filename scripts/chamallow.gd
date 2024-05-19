@@ -42,7 +42,6 @@ func changeAnim(angle : float):
         anim.animation = "side"
 
 func drop():
-    print("hello")
     randomize()
     var value : int = randi() % 11
     var obj
