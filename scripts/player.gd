@@ -110,12 +110,12 @@ func swing(aim: Vector2) -> void:
 func spray(aim: Vector2) -> void:
     if torch_spray_cd > 0.0: return
     if do <= 0.0: return
-    do -= 0.25 / fireRate
+    do -= 1 / fireRate
     torch_spray_cd = SPRAY_COOLDOWN / fireRate
     var tmp = FLAME_SPRAY_SCENE.instantiate()
     tmp.position = position
     tmp.setSpeed(512.0 * (1 + fireRange / 10))
-    tmp.damage = strenght / 2
+    tmp.damage = strenght / 4
     if not controller:
         tmp.setDirVect(get_global_mouse_position() - position)
     else:

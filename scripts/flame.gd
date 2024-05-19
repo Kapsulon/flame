@@ -29,4 +29,4 @@ func _on_area_2d_body_entered(body):
     if (body.is_in_group("burnable") and body.alive):
         body.burn(damage)
     if (body.is_in_group("enemy") and body.alive):
-        body.hit(damage, (body.position - position).normalized() * (damage * 10))
+        body.hit(damage, Vector2.ZERO, 0)

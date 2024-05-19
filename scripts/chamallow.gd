@@ -24,9 +24,9 @@ var knockBackTime : float = 0
 func _ready():
     anim = get_node("AnimatedSprite2D")
 
-func hit(damage : float, knockBack : Vector2):
+func hit(damage : float, knockBack : Vector2, knockTime : float):
     knock = knockBack
-    knockBackTime = 0.2
+    knockBackTime = knockTime
     life -= damage
     if (life <= 0):
         alive = false
