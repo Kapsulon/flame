@@ -205,7 +205,7 @@ layer_0/tile_data = PackedInt32Array(-1048606, 196608, 3, -983070, 196608, 3, -9
 [node name="Table" parent="Furniture" instance=ExtResource("5_1dxy1")]
 position = Vector2(529, -147)
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
 script = ExtResource("1_fc8uo")
 SPRAY_COOLDOWN = 0.1
 collision_shape = SubResource("RectangleShape2D_suj6p")

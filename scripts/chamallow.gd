@@ -17,11 +17,16 @@ static var fireRange := preload("res://scenes/consumable/FireRangeUp.tscn")
 static var strenght := preload("res://scenes/consumable/strenghtUp.tscn")
 static var epiShield := preload("res://scenes/consumable/epiShield.tscn")
 
+var knock : Vector2
+var knockBackTime : float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     anim = get_node("AnimatedSprite2D")
 
-func hit(damage : float):
+func hit(damage : float, knockBack : Vector2):
+    knock = knockBack
+    knockBackTime = 0.5
     life -= damage
     if (life <= 0):
         alive = false
@@ -61,18 +66,23 @@ func drop():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta : float) -> void:
-    var dir = to_local(nav_agent.get_next_path_position()).normalized()
-    velocity = dir * speed
-    move_and_slide()
-    if (alive):
-        changeAnim(velocity.angle())
+    if (knockBackTime <= 0):
+        if (alive):
+            var dir = to_local(nav_agent.get_next_path_position()).normalized()
+            velocity = dir * speed
+            move_and_slide()
+            changeAnim(velocity.angle())
+        else:
+            anim.self_modulate.a -= delta
+            if (anim.self_modulate.a <= 0):
+                randomize()
+                if (randi() % 101 <= 10):
+                    drop()
+                queue_free()
     else:
-        anim.self_modulate.a -= delta
-        if (anim.self_modulate.a <= 0):
-            randomize()
-            if (randi() % 101 <= 10):
-                drop()
-            queue_free()
+        velocity = knock
+        knockBackTime -= delta
+        move_and_slide()
 
 func makepath() -> void:
     nav_agent.target_position = player.global_position
