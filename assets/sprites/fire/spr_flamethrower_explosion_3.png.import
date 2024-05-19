@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0glup717jbrq"
-path="res://.godot/imported/spr_flamethrower_explosion_7.png-f7093d48f584c0f0d2a6b3783dc2e320.ctex"
+uid="uid://4ua03wp10thk"
+path="res://.godot/imported/spr_flamethrower_explosion_3.png-3d62c69f2cea29e5dec7b971dfc4159c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spr_flamethrower_explosion_7.png"
-dest_files=["res://.godot/imported/spr_flamethrower_explosion_7.png-f7093d48f584c0f0d2a6b3783dc2e320.ctex"]
+source_file="res://assets/sprites/fire/spr_flamethrower_explosion_3.png"
+dest_files=["res://.godot/imported/spr_flamethrower_explosion_3.png-3d62c69f2cea29e5dec7b971dfc4159c.ctex"]
 
 [params]
 
