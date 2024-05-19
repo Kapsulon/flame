@@ -40,7 +40,7 @@ var life : float = 100
 var maxLife : float = 100
 var do : float = 100
 var maxDo : float = 100
-var strenght : float = 1
+var strenght : float = 20
 var fireRate : float = 1
 var fireRange : float = 1
 
@@ -96,6 +96,7 @@ func _ready() -> void:
     UI = get_node("../UI")
 
 func swing(aim: Vector2) -> void:
+    torch_swing.damage = strenght
     torch_sprite.hide()
     torch_flame.emitting = false
     if not controller:
@@ -108,10 +109,11 @@ func swing(aim: Vector2) -> void:
 
 func spray(aim: Vector2) -> void:
     if torch_spray_cd > 0.0: return
-    torch_spray_cd = SPRAY_COOLDOWN
+    torch_spray_cd = SPRAY_COOLDOWN / fireRate
     var tmp = FLAME_SPRAY_SCENE.instantiate()
     tmp.position = position
-    tmp.setSpeed(512.0)
+    tmp.setSpeed(512.0 * (1 + fireRange / 10))
+    tmp.damage = strenght / 2
     if not controller:
         tmp.setDirVect(get_global_mouse_position() - position)
     else:
@@ -152,7 +154,7 @@ func _physics_process(_delta: float) -> void:
     if Input.is_action_just_pressed("action1"):
         swing(aim_dir)
     if Input.is_action_pressed("action2"):
-        if (UI.decrease_do(0.25)):
+        if (UI.decrease_do(0.25 / fireRate)):
             spray(aim_dir)
     velocity = dir.normalized() * SPEED
     if velocity.length() > 0.0:

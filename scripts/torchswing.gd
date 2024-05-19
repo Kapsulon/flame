@@ -2,6 +2,7 @@ class_name TorchSwing
 extends Node2D
 
 var swinging: bool = false
+var damage: float = 20
 
 func _ready() -> void:
     $pivot/Torch.self_modulate.a = 0
@@ -17,3 +18,11 @@ func swing() -> bool:
     $pivot/Torch.self_modulate.a = 0
     swinging = false
     return true
+
+
+func _on_hitbox_body_entered(body):
+    if (body.is_in_group("burnable") and body.alive):
+        body.burn(damage)
+    if (body.is_in_group("enemy") and body.alive):
+        body.hit(damage)
+
