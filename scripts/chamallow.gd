@@ -26,7 +26,7 @@ func _ready():
 
 func hit(damage : float, knockBack : Vector2):
     knock = knockBack
-    knockBackTime = 0.5
+    knockBackTime = 0.2
     life -= damage
     if (life <= 0):
         alive = false
