@@ -109,6 +109,8 @@ func swing(aim: Vector2) -> void:
 
 func spray(aim: Vector2) -> void:
     if torch_spray_cd > 0.0: return
+    if do <= 0.0: return
+    do -= 0.25 / fireRate
     torch_spray_cd = SPRAY_COOLDOWN / fireRate
     var tmp = FLAME_SPRAY_SCENE.instantiate()
     tmp.position = position
@@ -154,8 +156,7 @@ func _physics_process(_delta: float) -> void:
     if Input.is_action_just_pressed("action1"):
         swing(aim_dir)
     if Input.is_action_pressed("action2"):
-        if (UI.decrease_do(0.25 / fireRate)):
-            spray(aim_dir)
+        spray(aim_dir)
     velocity = dir.normalized() * SPEED
     if velocity.length() > 0.0:
         var tmp = animation
