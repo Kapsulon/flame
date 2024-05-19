@@ -23,10 +23,6 @@ func _ready() -> void:
             spawns.append(child)
 
 func new_wave():
-    var valid_spawns: Array[Marker2D] = []
-    for spawn in spawns:
-        if spawn.global_position.distance_to(player.global_position) > 100:
-            valid_spawns.append(spawn)
     wave += 1
     left = roundi(0.09 * (wave^2) - 0.029 * wave + 23.9)
 
@@ -38,13 +34,27 @@ func get_current() -> int:
     return tmp
 
 func _process(delta: float) -> void:
-    if time_until_new_wave <= 0:
-        new_wave()
-        time_until_new_wave = DELAY_BETWEEN_WAVES
-    elif left == 0:
-        time_until_new_wave -= delta
     if left > 0 and get_current() < MAX_ENEMY_COUNT:
+        var valid_spawns: Array[Marker2D] = []
+        var closest: Marker2D = null
+        for spawn in spawns:
+            if closest == null:
+                closest = spawn
+                continue
+            if spawn.global_position.distance_to(player.global_position) < closest.global_position.distance_to(player.global_position):
+                closest = spawn
+        for spawn in spawns:
+            if closest == spawn:
+                continue
+            valid_spawns.append(spawn)
         var enemy: Chamallow = ENEMY_SCENE.instantiate()
-        enemy.global_position = spawns[randi() % spawns.size()].global_position
+        enemy.player = player
+        enemy.global_position = valid_spawns[randi() % valid_spawns.size()].global_position
         $enemies.add_child(enemy)
         left -= 1
+    if left == 0 && get_current() == 0:
+        if time_until_new_wave <= 0:
+            new_wave()
+            time_until_new_wave = DELAY_BETWEEN_WAVES
+        elif left == 0:
+            time_until_new_wave -= delta

@@ -28,6 +28,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 
 func _on_area_2d_body_entered(body):
+    print(body)
     if (body.is_in_group("burnable") and body.alive):
         body.burn(damage)
     if (body.is_in_group("enemy") and body.alive):

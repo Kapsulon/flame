@@ -1,32 +1,36 @@
 [gd_scene load_steps=21 format=3 uid="uid://cfx5gg01pfg87"]
 
+[ext_resource type="Texture2D" uid="uid://b0s5tdinofay2" path="res://assets/sprites/fantasy-ui/Border/panel-border-003.png" id="1_be2vj"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fc8uo"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_xk6bd"]
 [ext_resource type="SpriteFrames" uid="uid://naxmwo2uwgli" path="res://assets/animations/player.tres" id="2_asafn"]
+[ext_resource type="Texture2D" uid="uid://bl5a86vy7lewi" path="res://assets/sprites/fantasy-ui/Panel/panel-003.png" id="2_my5yw"]
 [ext_resource type="Texture2D" uid="uid://bde6f6x3lab8f" path="res://assets/sprites/torch.png" id="2_yca57"]
+[ext_resource type="PackedScene" uid="uid://ckeaetcxuehlb" path="res://scenes/sofa.tscn" id="4_dyiqo"]
 [ext_resource type="Texture2D" uid="uid://q6tra06np6hs" path="res://interface/bars/life_bar/heart_UI.png" id="4_foolh"]
+[ext_resource type="PackedScene" uid="uid://ds06kapcb07i8" path="res://scenes/table.tscn" id="5_1dxy1"]
 [ext_resource type="Texture2D" uid="uid://d2bljfrklv0w5" path="res://assets/sprites/deo.png" id="5_pfifa"]
 [ext_resource type="Texture2D" uid="uid://c0k4ndka4440w" path="res://assets/sprites/walls.png" id="6_xpg7d"]
-[ext_resource type="Texture2D" uid="uid://bvet0pi52txpt" path="res://assets/sprites/table.png" id="7_f6x6h"]
-[ext_resource type="Texture2D" uid="uid://bemgp5wguqxmw" path="res://assets/sprites/sofa.png" id="8_ajow1"]
 [ext_resource type="Script" path="res://scripts/WaveManager.gd" id="9_lm76o"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4usn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4622d"]
 bg_color = Color(0.266667, 0.352941, 0.341176, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ox5n"]
-bg_color = Color(0.870588, 0.2, 0.101961, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmfsc"]
-bg_color = Color(0, 0.972549, 0.27451, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3c8gt"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqi5q"]
 bg_color = Color(0.137255, 0.654902, 0.839216, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulmrq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35vqc"]
 bg_color = Color(0.14902, 0.0823529, 0.972549, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8abr5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olusa"]
 bg_color = Color(0.196078, 0.45098, 0.513726, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3t0es"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bypew"]
 texture = ExtResource("6_xpg7d")
@@ -56,6 +60,7 @@ texture_region_size = Vector2i(32, 32)
 3:3/0 = 0
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_3t0es")
 4:2/0 = 0
 4:2/0/terrain_set = 0
 4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -97,13 +102,8 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Walls"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_bypew")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bdnl"]
-size = Vector2(49.1667, 32.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5m50"]
-size = Vector2(48, 29.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suj6p"]
 size = Vector2(48, 64)
@@ -111,67 +111,86 @@ size = Vector2(48, 64)
 [node name="world" type="Node"]
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("1_xk6bd")
 
-[node name="Bars_bg" type="Panel" parent="UI"]
+[node name="Bars" type="Panel" parent="UI"]
 offset_right = 423.0
 offset_bottom = 189.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_f4usn")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4622d")
 
-[node name="Life_bar" type="ProgressBar" parent="UI/Bars_bg"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
+[node name="Health_bar" type="TextureProgressBar" parent="UI/Bars"]
+layout_mode = 0
 offset_left = 80.0
-offset_top = 40.0
-offset_right = -15.0
-offset_bottom = 67.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_4ox5n")
-theme_override_styles/fill = SubResource("StyleBoxFlat_mmfsc")
-value = 35.0
-show_percentage = false
+offset_top = 35.0
+offset_right = 408.0
+offset_bottom = 72.0
+min_value = 5.0
+max_value = 95.0
+step = 0.1
+value = 95.0
+nine_patch_stretch = true
+stretch_margin_left = 12
+stretch_margin_top = 12
+stretch_margin_right = 12
+stretch_margin_bottom = 12
+texture_under = ExtResource("1_be2vj")
+texture_progress = ExtResource("2_my5yw")
 
-[node name="Do_bar" type="ProgressBar" parent="UI/Bars_bg"]
+[node name="Do_bar" type="ProgressBar" parent="UI/Bars"]
+layout_direction = 2
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = 81.0
-offset_top = 117.0
-offset_right = -14.0
-offset_bottom = 144.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = -68.0
+offset_right = -17.0
+offset_bottom = -42.0
 grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_3c8gt")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ulmrq")
-value = 82.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_uqi5q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_35vqc")
+value = 100.0
 show_percentage = false
 
-[node name="Life_icon" type="Panel" parent="UI/Bars_bg"]
+[node name="Health_icon" type="Panel" parent="UI/Bars"]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 29.0
 offset_right = 66.0
 offset_bottom = 79.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_8abr5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_olusa")
 
-[node name="Life_img" type="TextureRect" parent="UI/Bars_bg/Life_icon"]
+[node name="Health_img" type="TextureRect" parent="UI/Bars/Health_icon"]
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 51.0
 texture = ExtResource("4_foolh")
 
-[node name="Do_icon" type="Panel" parent="UI/Bars_bg"]
+[node name="Do_icon" type="Panel" parent="UI/Bars"]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 105.0
 offset_right = 66.0
 offset_bottom = 155.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_8abr5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_olusa")
 
-[node name="Do_img" type="TextureRect" parent="UI/Bars_bg/Do_icon"]
+[node name="Do_img" type="TextureRect" parent="UI/Bars/Do_icon"]
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 51.0
 texture = ExtResource("5_pfifa")
+
+[node name="wave_nb" type="Label" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "0"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_u3foa")
@@ -180,31 +199,10 @@ layer_0/tile_data = PackedInt32Array(-1048606, 196608, 3, -983070, 196608, 3, -9
 
 [node name="Furniture" type="Node2D" parent="."]
 
-[node name="Table" type="StaticBody2D" parent="Furniture"]
-position = Vector2(539, -258)
-scale = Vector2(3, 3)
-metadata/_edit_group_ = true
+[node name="Sofa" parent="Furniture" instance=ExtResource("4_dyiqo")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/Table"]
-position = Vector2(2.25, -8.75)
-shape = SubResource("RectangleShape2D_2bdnl")
-
-[node name="Sprite2D" type="Sprite2D" parent="Furniture/Table"]
-position = Vector2(1, -12)
-texture = ExtResource("7_f6x6h")
-
-[node name="Sofa" type="StaticBody2D" parent="Furniture"]
-position = Vector2(-155, -356)
-scale = Vector2(3, 3)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/Sofa"]
-position = Vector2(0.333334, -9.99998)
-shape = SubResource("RectangleShape2D_a5m50")
-
-[node name="Sprite2D" type="Sprite2D" parent="Furniture/Sofa"]
-position = Vector2(1, -12)
-texture = ExtResource("8_ajow1")
+[node name="Table" parent="Furniture" instance=ExtResource("5_1dxy1")]
+position = Vector2(529, -147)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_fc8uo")
@@ -216,6 +214,7 @@ animation = "idle"
 
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("9_lm76o")
+DELAY_BETWEEN_WAVES = 5.0
 player = NodePath("../Player")
 
 [node name="Marker2D" type="Marker2D" parent="WaveManager"]

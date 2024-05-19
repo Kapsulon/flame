@@ -1,21 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7qa1k36e2hs6"]
+[gd_scene load_steps=4 format=3 uid="uid://b7qa1k36e2hs6"]
 
-[sub_resource type="Gradient" id="Gradient_w3s47"]
-offsets = PackedFloat32Array(0, 0.623457, 1)
-colors = PackedColorArray(1, 0.858824, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0)
+[ext_resource type="Material" uid="uid://cq215p3osxcp4" path="res://assets/particles/flame_particle.tres" id="1_omdww"]
+[ext_resource type="Texture2D" uid="uid://lw5kabu6x2nf" path="res://assets/sprites/fire/spr_flamethrower_explosion-sheet.png" id="1_pkfjn"]
 
-[node name="flame_particle" type="CPUParticles2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m0fk4"]
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="flame_particle" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_m0fk4")
 amount = 128
-lifetime = 0.35
-draw_order = 1
-emission_shape = 1
-emission_sphere_radius = 8.0
-direction = Vector2(0, -1)
-gravity = Vector2(0, 0)
-initial_velocity_min = 60.0
-initial_velocity_max = 80.0
-angular_velocity_min = -720.0
-angular_velocity_max = 720.0
-scale_amount_min = 4.0
-scale_amount_max = 4.0
-color_ramp = SubResource("Gradient_w3s47")
+process_material = ExtResource("1_omdww")
+texture = ExtResource("1_pkfjn")

@@ -29,7 +29,6 @@ func hit(damage : float):
     anim.self_modulate = Color.SADDLE_BROWN * (1 - percent) + Color.WHITE * percent
 
 func changeAnim(angle : float):
-    print(angle)
     if (angle < PI / 4 and angle > -PI / 4):
         $AnimatedSprite2D.flip_h = false
         anim.animation = "side"

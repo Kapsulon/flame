@@ -1,0 +1,20 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://cq215p3osxcp4"]
+
+[resource]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+angle_min = 90.0
+angle_max = 90.0
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 64.0
+initial_velocity_max = 64.0
+gravity = Vector3(0, 0, 0)
+damping_min = 32.0
+damping_max = 32.0
+scale_min = 0.1
+scale_max = 0.5
+anim_speed_min = 1.0
+anim_speed_max = 1.0
