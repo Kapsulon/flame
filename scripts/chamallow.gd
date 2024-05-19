@@ -6,6 +6,8 @@ var anim : AnimatedSprite2D
 @export var maxLife : float
 var alive : bool = true
 
+var power = 10
+
 const speed = 150
 @export var player: Player
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
@@ -89,3 +91,9 @@ func makepath() -> void:
 
 func _on_timer_timeout():
     makepath()
+
+
+func _on_area_2d_body_entered(body):
+    if (body.is_in_group("player") and body.invicibilityTimer <= 0):
+        body.invicibilityTimer = 0.5
+        body.life -= power

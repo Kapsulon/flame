@@ -47,6 +47,8 @@ var fireRange : float = 1
 @export
 var SPRAY_COOLDOWN: float = 0.25
 
+var  invicibilityTimer = 0
+
 @export
 var collision_shape: Shape2D:
     set(n_collision_shape):
@@ -148,6 +150,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
     if Engine.is_editor_hint(): return
+    if (invicibilityTimer > 0):
+        invicibilityTimer -= _delta
     var dir := Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
     var aim_dir := Vector2(Input.get_axis("aim_left", "aim_right"), Input.get_axis("aim_up", "aim_down"))
     if aim_dir == Vector2.ZERO:
