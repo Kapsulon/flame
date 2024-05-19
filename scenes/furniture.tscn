@@ -94,6 +94,7 @@ sources/0 = SubResource("TileSetAtlasSource_bypew")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lssvs"]
 bg_color = Color(0.266667, 0.352941, 0.341176, 1)
 
+<<<<<<< HEAD
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8n6w"]
 bg_color = Color(0.870588, 0.2, 0.101961, 1)
 
@@ -118,6 +119,8 @@ size = Vector2(48, 29.3333)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejwbe"]
 size = Vector2(48, 64)
 
+=======
+>>>>>>> 57444d7f9cb1d742a7195dedf2ece9f58ca58d48
 [node name="Furniture" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -190,11 +193,9 @@ texture = ExtResource("2_w587a")
 
 [node name="Furniture" type="Node2D" parent="."]
 
-[node name="Table" type="StaticBody2D" parent="Furniture"]
-position = Vector2(539, -258)
-scale = Vector2(3, 3)
-metadata/_edit_group_ = true
+[node name="Table" parent="Furniture" instance=ExtResource("4_6f6oy")]
 
+<<<<<<< HEAD
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/Table"]
 position = Vector2(2.25, -8.75)
 shape = SubResource("RectangleShape2D_7qn1l")
@@ -246,3 +247,6 @@ position = Vector2(1025, -602)
 [node name="Chamallow" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_6363a")]
 position = Vector2(-541, 75)
 player = NodePath("../Player")
+=======
+[node name="Sofa" parent="Furniture" instance=ExtResource("5_5swq0")]
+>>>>>>> 57444d7f9cb1d742a7195dedf2ece9f58ca58d48

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds06kapcb07i8"]
+
+[ext_resource type="Script" path="res://scripts/furniture.gd" id="1_0ps34"]
+[ext_resource type="Texture2D" uid="uid://bvet0pi52txpt" path="res://assets/sprites/table.png" id="1_ql3il"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2g02n"]
+size = Vector2(45.3333, 29.6667)
+
+[node name="Table" type="StaticBody2D" groups=["burnable"]]
+scale = Vector2(3, 3)
+script = ExtResource("1_0ps34")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["burnable"]]
+position = Vector2(1.66667, -8.16667)
+shape = SubResource("RectangleShape2D_2g02n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+texture = ExtResource("1_ql3il")

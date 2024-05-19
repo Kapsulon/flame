@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://cfx5gg01pfg87"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_fc8uo"]
+[ext_resource type="SpriteFrames" uid="uid://naxmwo2uwgli" path="res://assets/animations/player.tres" id="2_asafn"]
+[ext_resource type="Texture2D" uid="uid://bde6f6x3lab8f" path="res://assets/sprites/torch.png" id="2_yca57"]
+[ext_resource type="Texture2D" uid="uid://q6tra06np6hs" path="res://interface/bars/life_bar/heart_UI.png" id="4_foolh"]
+[ext_resource type="Texture2D" uid="uid://d2bljfrklv0w5" path="res://assets/sprites/deo.png" id="5_pfifa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suj6p"]
+size = Vector2(48, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4usn"]
+bg_color = Color(0.266667, 0.352941, 0.341176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ox5n"]
+bg_color = Color(0.870588, 0.2, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmfsc"]
+bg_color = Color(0, 0.972549, 0.27451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3c8gt"]
+bg_color = Color(0.137255, 0.654902, 0.839216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulmrq"]
+bg_color = Color(0.14902, 0.0823529, 0.972549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8abr5"]
+bg_color = Color(0.196078, 0.45098, 0.513726, 1)
+
+[node name="world" type="Node"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_fc8uo")
+SPRAY_COOLDOWN = 0.1
+collision_shape = SubResource("RectangleShape2D_suj6p")
+torch = ExtResource("2_yca57")
+animation_path = ExtResource("2_asafn")
+animation = "idle"
+
+[node name="UI" type="CanvasLayer" parent="Player"]
+
+[node name="Bars_bg" type="Panel" parent="Player/UI"]
+offset_right = 423.0
+offset_bottom = 189.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f4usn")
+
+[node name="Health_bar" type="ProgressBar" parent="Player/UI/Bars_bg"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 80.0
+offset_top = 40.0
+offset_right = -15.0
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_4ox5n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mmfsc")
+value = 35.0
+show_percentage = false
+
+[node name="Do_bar" type="ProgressBar" parent="Player/UI/Bars_bg"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 81.0
+offset_top = 117.0
+offset_right = -14.0
+offset_bottom = 144.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_3c8gt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ulmrq")
+value = 100.0
+show_percentage = false
+
+[node name="Health_icon" type="Panel" parent="Player/UI/Bars_bg"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 29.0
+offset_right = 66.0
+offset_bottom = 79.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8abr5")
+
+[node name="Health_img" type="TextureRect" parent="Player/UI/Bars_bg/Health_icon"]
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 51.0
+texture = ExtResource("4_foolh")
+
+[node name="Do_icon" type="Panel" parent="Player/UI/Bars_bg"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 105.0
+offset_right = 66.0
+offset_bottom = 155.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8abr5")
+
+[node name="Do_img" type="TextureRect" parent="Player/UI/Bars_bg/Do_icon"]
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 51.0
+texture = ExtResource("5_pfifa")

@@ -231,3 +231,5 @@ position = Vector2(1027, 561)
 position = Vector2(1025, -602)
 
 [node name="Marker2D5" type="Marker2D" parent="WaveManager"]
+
+[node name="enemies" type="Node" parent="WaveManager"]

@@ -7,15 +7,15 @@ var _sign : float = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    pass
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-    _subTime += delta
-    if (_subTime < _time):
-        transform.origin.y += _speed * delta * _sign
-    else:
-        _sign *= -1
-        _subTime = 0
-        
+	_subTime += delta
+	if (_subTime < _time):
+		transform.origin.y += _speed * delta * _sign
+	else:
+		_sign *= -1
+		_subTime = 0
+		
