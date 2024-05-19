@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://c0k4ndka4440w" path="res://assets/sprites/walls.png" id="1_8kqli"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_oppxb"]
 [ext_resource type="SpriteFrames" uid="uid://naxmwo2uwgli" path="res://assets/animations/player.tres" id="3_e8m3r"]
-[ext_resource type="Texture2D" uid="uid://bvet0pi52txpt" path="res://assets/sprites/table.png" id="4_3kwoc"]
-[ext_resource type="Texture2D" uid="uid://bemgp5wguqxmw" path="res://assets/sprites/sofa.png" id="5_vgt5y"]
+[ext_resource type="PackedScene" uid="uid://ds06kapcb07i8" path="res://scenes/table.tscn" id="4_6f6oy"]
+[ext_resource type="PackedScene" uid="uid://ckeaetcxuehlb" path="res://scenes/sofa.tscn" id="5_5swq0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bypew"]
 texture = ExtResource("1_8kqli")
@@ -80,12 +80,6 @@ sources/0 = SubResource("TileSetAtlasSource_bypew")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q267t"]
 size = Vector2(128, 128)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2g02n"]
-size = Vector2(49.1667, 32.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8knhk"]
-size = Vector2(48, 29.3333)
-
 [node name="Furniture" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -101,28 +95,6 @@ animation = "idle"
 
 [node name="Furniture" type="Node2D" parent="."]
 
-[node name="Table" type="StaticBody2D" parent="Furniture"]
-position = Vector2(539, -258)
-scale = Vector2(3, 3)
-metadata/_edit_group_ = true
+[node name="Table" parent="Furniture" instance=ExtResource("4_6f6oy")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/Table"]
-position = Vector2(2.25, -8.75)
-shape = SubResource("RectangleShape2D_2g02n")
-
-[node name="Sprite2D" type="Sprite2D" parent="Furniture/Table"]
-position = Vector2(1, -12)
-texture = ExtResource("4_3kwoc")
-
-[node name="Sofa" type="StaticBody2D" parent="Furniture"]
-position = Vector2(-155, -356)
-scale = Vector2(3, 3)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/Sofa"]
-position = Vector2(0.333334, -9.99998)
-shape = SubResource("RectangleShape2D_8knhk")
-
-[node name="Sprite2D" type="Sprite2D" parent="Furniture/Sofa"]
-position = Vector2(1, -12)
-texture = ExtResource("5_vgt5y")
+[node name="Sofa" parent="Furniture" instance=ExtResource("5_5swq0")]

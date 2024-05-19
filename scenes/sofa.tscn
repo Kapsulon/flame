@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckeaetcxuehlb"]
+
+[ext_resource type="Texture2D" uid="uid://bemgp5wguqxmw" path="res://assets/sprites/sofa.png" id="1_c8eit"]
+[ext_resource type="Script" path="res://scripts/furniture.gd" id="1_mx45p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8knhk"]
+size = Vector2(48, 29.3333)
+
+[node name="Sofa" type="StaticBody2D" groups=["burnable"]]
+position = Vector2(-155, -356)
+scale = Vector2(3, 3)
+script = ExtResource("1_mx45p")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["burnable"]]
+position = Vector2(0.333334, -9.99998)
+shape = SubResource("RectangleShape2D_8knhk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+texture = ExtResource("1_c8eit")
