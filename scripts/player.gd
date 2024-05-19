@@ -92,6 +92,7 @@ func _ready() -> void:
     add_child(torch_sprite)
     torch_sprite.add_child(torch_flame)
     torch_flame.position.y = -torch_sprite.get_rect().size.y / 2
+    torch_swing.player = self
     add_child(torch_swing)
     UI = get_node("../UI")
 
@@ -110,7 +111,7 @@ func swing(aim: Vector2) -> void:
 func spray(aim: Vector2) -> void:
     if torch_spray_cd > 0.0: return
     if do <= 0.0: return
-    do -= 1 / fireRate
+    do -= 1 / (fireRate / 2)
     torch_spray_cd = SPRAY_COOLDOWN / fireRate
     var tmp = FLAME_SPRAY_SCENE.instantiate()
     tmp.position = position

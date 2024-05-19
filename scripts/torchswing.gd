@@ -3,6 +3,7 @@ extends Node2D
 
 var swinging: bool = false
 var damage: float = 20
+@export var player : Player
 
 func _ready() -> void:
     $pivot/Torch.self_modulate.a = 0
@@ -24,4 +25,4 @@ func _on_hitbox_body_entered(body):
     if (body.is_in_group("burnable") and body.alive):
         body.burn(damage)
     if (body.is_in_group("enemy") and body.alive):
-        body.hit(damage, (body.position - position).normalized() * (damage * 30), 0.2)
+        body.hit(damage, (body.position - player.position).normalized() * 600, 0.2)
