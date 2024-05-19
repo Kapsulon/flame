@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://die5ohyuhiepk"]
+[gd_scene load_steps=9 format=3 uid="uid://die5ohyuhiepk"]
 
 [ext_resource type="Texture2D" uid="uid://bde6f6x3lab8f" path="res://assets/sprites/torch.png" id="1_5wsu8"]
 [ext_resource type="Script" path="res://scripts/torchswing.gd" id="1_gjr8v"]
@@ -7,6 +7,9 @@
 [sub_resource type="Gradient" id="Gradient_5k7c7"]
 offsets = PackedFloat32Array(0, 0.806667, 1)
 colors = PackedColorArray(1, 0.858824, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dkaf"]
+size = Vector2(22.6667, 83.3333)
 
 [sub_resource type="Animation" id="Animation_hg5nn"]
 resource_name = "swing"
@@ -48,9 +51,61 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("pivot/Torch/hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("pivot/Torch/hitbox:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ax0xn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pivot/Torch/hitbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pivot/Torch/hitbox:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8tyjt"]
 _data = {
+"RESET": SubResource("Animation_ax0xn"),
 "swing": SubResource("Animation_hg5nn")
 }
 
@@ -84,6 +139,14 @@ angular_velocity_max = 720.0
 scale_amount_min = 4.0
 scale_amount_max = 4.0
 color_ramp = SubResource("Gradient_5k7c7")
+
+[node name="hitbox" type="Area2D" parent="pivot/Torch" groups=["swing"]]
+monitoring = false
+monitorable = false
+
+[node name="shape" type="CollisionShape2D" parent="pivot/Torch/hitbox"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_3dkaf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

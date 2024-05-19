@@ -1,3 +1,4 @@
+class_name Chamallow
 extends CharacterBody2D
 
 var anim : AnimatedSprite2D
