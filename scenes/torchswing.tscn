@@ -166,3 +166,5 @@ shape = SubResource("RectangleShape2D_3dkaf")
 libraries = {
 "": SubResource("AnimationLibrary_8tyjt")
 }
+
+[connection signal="body_entered" from="pivot/Torch/hitbox" to="." method="_on_hitbox_body_entered"]
