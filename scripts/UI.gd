@@ -11,6 +11,6 @@ var manager: WaveManager
 @onready var wave_nb = $wave_nb
 
 func _process(delta: float) -> void:
-    health_bar.ratio = player.life / player.maxLife
-    do_bar.ratio = player.do / player.maxDo
-    wave_nb.text = "Wave %d (%d enemies left)" % [manager.wave, manager.left + manager.last_current]
+	health_bar.ratio = player.life / player.maxLife
+	do_bar.ratio = player.do / player.maxDo
+	wave_nb.text = "Wave %d (%d enemies left)" % [manager.wave, manager.left + manager.last_current]

@@ -8,6 +8,7 @@
 size = Vector2(11, 29)
 
 [node name="strenghtUp" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_2bsp8")
 
 [node name="attackDeodorant" type="Sprite2D" parent="."]

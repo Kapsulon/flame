@@ -8,6 +8,7 @@
 size = Vector2(13, 29)
 
 [node name="Heal" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_mj1s8")
 
 [node name="Monster" type="Sprite2D" parent="."]

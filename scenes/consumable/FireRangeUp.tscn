@@ -8,6 +8,7 @@
 size = Vector2(11, 29)
 
 [node name="fireRangeUp" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_rfuuu")
 
 [node name="fireRangeDeodorant" type="Sprite2D" parent="."]

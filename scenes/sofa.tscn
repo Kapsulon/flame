@@ -7,7 +7,7 @@
 size = Vector2(48, 29.3333)
 
 [node name="Sofa" type="StaticBody2D" groups=["burnable"]]
-position = Vector2(-155, -356)
+position = Vector2(0, 28)
 scale = Vector2(3, 3)
 script = ExtResource("1_mx45p")
 metadata/_edit_group_ = true

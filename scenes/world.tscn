@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cfx5gg01pfg87"]
+[gd_scene load_steps=17 format=3 uid="uid://cfx5gg01pfg87"]
 
 [ext_resource type="Texture2D" uid="uid://b0s5tdinofay2" path="res://assets/sprites/fantasy-ui/Border/panel-border-003.png" id="1_be2vj"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fc8uo"]
@@ -6,12 +6,11 @@
 [ext_resource type="SpriteFrames" uid="uid://naxmwo2uwgli" path="res://assets/animations/player.tres" id="2_asafn"]
 [ext_resource type="Texture2D" uid="uid://bl5a86vy7lewi" path="res://assets/sprites/fantasy-ui/Panel/panel-003.png" id="2_my5yw"]
 [ext_resource type="Texture2D" uid="uid://bde6f6x3lab8f" path="res://assets/sprites/torch.png" id="2_yca57"]
-[ext_resource type="PackedScene" uid="uid://ckeaetcxuehlb" path="res://scenes/sofa.tscn" id="4_dyiqo"]
 [ext_resource type="Texture2D" uid="uid://q6tra06np6hs" path="res://interface/bars/life_bar/heart_UI.png" id="4_foolh"]
-[ext_resource type="PackedScene" uid="uid://ds06kapcb07i8" path="res://scenes/table.tscn" id="5_1dxy1"]
 [ext_resource type="Texture2D" uid="uid://d2bljfrklv0w5" path="res://assets/sprites/deo.png" id="5_pfifa"]
 [ext_resource type="Texture2D" uid="uid://c0k4ndka4440w" path="res://assets/sprites/walls.png" id="6_xpg7d"]
 [ext_resource type="Script" path="res://scripts/WaveManager.gd" id="9_lm76o"]
+[ext_resource type="AudioStream" uid="uid://bljqptghq63sv" path="res://assets/sounds/Street Fighter 5 - Kens Theme (SFV OST).mp3" id="11_kci5s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olusa"]
 bg_color = Color(0.196078, 0.45098, 0.513726, 1)
@@ -194,12 +193,35 @@ layer_0/tile_data = PackedInt32Array(-1048606, 196608, 3, -983070, 196608, 3, -9
 
 [node name="Furniture" type="Node2D" parent="."]
 
-[node name="Sofa" parent="Furniture" instance=ExtResource("4_dyiqo")]
+[node name="Marker2D" type="Marker2D" parent="Furniture"]
+position = Vector2(-639, -287)
 
-[node name="Table" parent="Furniture" instance=ExtResource("5_1dxy1")]
-position = Vector2(529, -147)
+[node name="Marker2D2" type="Marker2D" parent="Furniture"]
+position = Vector2(283, -365)
+
+[node name="Marker2D3" type="Marker2D" parent="Furniture"]
+position = Vector2(-586, 101)
+
+[node name="Marker2D4" type="Marker2D" parent="Furniture"]
+position = Vector2(-169, 283)
+
+[node name="Marker2D5" type="Marker2D" parent="Furniture"]
+position = Vector2(399, 542)
+
+[node name="Marker2D6" type="Marker2D" parent="Furniture"]
+position = Vector2(-52, -270)
+
+[node name="Marker2D7" type="Marker2D" parent="Furniture"]
+position = Vector2(-446, -461)
+
+[node name="Marker2D8" type="Marker2D" parent="Furniture"]
+position = Vector2(660, 224)
+
+[node name="Marker2D9" type="Marker2D" parent="Furniture"]
+position = Vector2(-686, 433)
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(-166, -118)
 script = ExtResource("1_fc8uo")
 SPRAY_COOLDOWN = 0.1
 collision_shape = SubResource("RectangleShape2D_suj6p")
@@ -207,10 +229,11 @@ torch = ExtResource("2_yca57")
 animation_path = ExtResource("2_asafn")
 animation = "idle"
 
-[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("player", "furnitureNode")]
 script = ExtResource("9_lm76o")
 DELAY_BETWEEN_WAVES = 2.5
 player = NodePath("../Player")
+furnitureNode = NodePath("../Furniture")
 
 [node name="Marker2D" type="Marker2D" parent="WaveManager"]
 position = Vector2(-957, -577)
@@ -225,5 +248,11 @@ position = Vector2(1027, 561)
 position = Vector2(1025, -602)
 
 [node name="Marker2D5" type="Marker2D" parent="WaveManager"]
+position = Vector2(-2, 3)
 
 [node name="enemies" type="Node" parent="WaveManager"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_kci5s")
+volume_db = -5.288
+autoplay = true

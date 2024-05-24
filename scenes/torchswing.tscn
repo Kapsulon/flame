@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://die5ohyuhiepk"]
+[gd_scene load_steps=12 format=3 uid="uid://die5ohyuhiepk"]
 
 [ext_resource type="Texture2D" uid="uid://bde6f6x3lab8f" path="res://assets/sprites/torch.png" id="1_5wsu8"]
 [ext_resource type="Script" path="res://scripts/torchswing.gd" id="1_gjr8v"]
 [ext_resource type="PackedScene" uid="uid://b7qa1k36e2hs6" path="res://assets/particles/flame_particle.tscn" id="2_fwp7p"]
 [ext_resource type="Texture2D" uid="uid://lw5kabu6x2nf" path="res://assets/sprites/fire/spr_flamethrower_explosion-sheet.png" id="5_auvgo"]
+[ext_resource type="AudioStream" uid="uid://dxp2l7nnk1uot" path="res://assets/sounds/torch.wav" id="5_g7boy"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6n3k5"]
 particles_animation = true
@@ -166,5 +167,8 @@ shape = SubResource("RectangleShape2D_3dkaf")
 libraries = {
 "": SubResource("AnimationLibrary_8tyjt")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_g7boy")
 
 [connection signal="body_entered" from="pivot/Torch/hitbox" to="." method="_on_hitbox_body_entered"]

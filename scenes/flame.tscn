@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cclvodsbiu1b0"]
+[gd_scene load_steps=15 format=3 uid="uid://cclvodsbiu1b0"]
 
 [ext_resource type="Script" path="res://scripts/flame.gd" id="1_0ut4t"]
 [ext_resource type="Texture2D" uid="uid://52qiiiv0iyh4" path="res://assets/sprites/fire/spr_flamethrower_explosion_0.png" id="2_shb5o"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://0glup717jbrq" path="res://assets/sprites/fire/spr_flamethrower_explosion_7.png" id="9_7388q"]
 [ext_resource type="Texture2D" uid="uid://jmgktoaigfqk" path="res://assets/sprites/fire/spr_flamethrower_explosion_8.png" id="10_valrv"]
 [ext_resource type="Texture2D" uid="uid://blqnnwrw6g7t1" path="res://assets/sprites/fire/spr_flamethrower_explosion_9.png" id="11_7wcjl"]
+[ext_resource type="AudioStream" uid="uid://d3xbgghytnob0" path="res://assets/sounds/flamethrower.wav" id="12_n5ypm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s5k1o"]
 animations = [{
@@ -69,6 +70,10 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_htfa3")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_n5ypm")
+volume_db = 9.286
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

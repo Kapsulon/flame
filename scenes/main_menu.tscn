@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://d17b13rw1rvju"]
+[gd_scene load_steps=11 format=3 uid="uid://thr3y5oaeos2"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_g2net"]
 [ext_resource type="Texture2D" uid="uid://lw5kabu6x2nf" path="res://assets/sprites/fire/spr_flamethrower_explosion-sheet.png" id="1_lly2b"]
 [ext_resource type="Texture2D" uid="uid://bde6f6x3lab8f" path="res://assets/sprites/torch.png" id="2_p5v88"]
 [ext_resource type="PackedScene" uid="uid://b7qa1k36e2hs6" path="res://assets/particles/flame_particle.tscn" id="3_pxuct"]
+[ext_resource type="AudioStream" uid="uid://ds84xg3pmpb5" path="res://assets/sounds/Main Theme - Sonic at the London 2012 Olympic Games.mp3" id="5_wmjl8"]
 
 [sub_resource type="Animation" id="Animation_inqea"]
 resource_name = "default"
@@ -169,6 +170,10 @@ text = "Play"
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wmjl8")
+volume_db = -8.814
 
 [connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
